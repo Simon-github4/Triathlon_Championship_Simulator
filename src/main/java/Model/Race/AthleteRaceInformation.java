@@ -68,6 +68,7 @@ public class AthleteRaceInformation extends Thread implements Serializable{
 				athlete.getChampionshipInformation().getLast().advance(advancedDistance);
 				athlete.getChampionshipInformation().getLast().setPosition(position);
 				
+				//Generate injur
 				Accident injury = Accident.generateInjury(this, fatigue);
 	            if (injury != null) {
 	                System.out.println("Lesión: " + injury.getDescription());
@@ -79,7 +80,7 @@ public class AthleteRaceInformation extends Thread implements Serializable{
 	                    System.out.println(athlete.getName() + " ha sido eliminado por " + injury.getDescription());
 	                } else {
 	                    sleep(injury.getPenaltyTime());
-	                    System.out.println("Penalización de tiempo: " + injury.getPenaltyTime() + " segundos");
+	                    System.out.println("Penalización de tiempo: " + injury.getPenaltyTime()/1000.0f + " segundos");
 	                }
 	            }
 	            
@@ -87,7 +88,7 @@ public class AthleteRaceInformation extends Thread implements Serializable{
 	            if (randomAccident != null) {
 	            	sleep(randomAccident.getPenaltyTime());
 	                System.out.println("Accidente aleatorio en " + currentDiscipline.getDescription() + ": " + randomAccident.getDescription());
-	                System.out.println("Penalización de tiempo: " + randomAccident.getPenaltyTime() + " segundos");
+	                System.out.println("Penalización de tiempo: " + randomAccident.getPenaltyTime()/1000.0f + " segundos");
 	                
 	                // Restar el tiempo de penalización al avance total del atleta
 	            }
@@ -150,6 +151,7 @@ public class AthleteRaceInformation extends Thread implements Serializable{
 				}
 
 				
+				//Generate injur
 				Accident injury = Accident.generateInjury(this, fatigue);
 	            if (injury != null) {
 	                System.out.println("Lesión: " + injury.getDescription());
@@ -161,7 +163,7 @@ public class AthleteRaceInformation extends Thread implements Serializable{
 	                    System.out.println(athlete.getName() + " ha sido eliminado por " + injury.getDescription());
 	                } else {
 	                    sleep(injury.getPenaltyTime());
-	                    System.out.println("Penalización de tiempo: " + injury.getPenaltyTime() + " segundos");
+	                    System.out.println("Penalización de tiempo: " + injury.getPenaltyTime()/1000.0f + " segundos");
 	                }
 	            }
 	            
@@ -169,7 +171,7 @@ public class AthleteRaceInformation extends Thread implements Serializable{
 	            if (randomAccident != null) {
 	            	sleep(randomAccident.getPenaltyTime());
 	                System.out.println("Accidente aleatorio en " + currentDiscipline.getDescription() + ": " + randomAccident.getDescription());
-	                System.out.println("Penalización de tiempo: " + randomAccident.getPenaltyTime() + " segundos");
+	                System.out.println("Penalización de tiempo: " + randomAccident.getPenaltyTime()/1000.0f + " segundos");
 	                
 	                // Restar el tiempo de penalización al avance total del atleta
 	            }
@@ -232,6 +234,7 @@ public class AthleteRaceInformation extends Thread implements Serializable{
 				}
 				
 				
+				//Generate injur
 				Accident injury = Accident.generateInjury(this, fatigue);
 	            if (injury != null) {
 	                System.out.println("Lesión: " + injury.getDescription());
@@ -243,7 +246,7 @@ public class AthleteRaceInformation extends Thread implements Serializable{
 	                    System.out.println(athlete.getName() + " ha sido eliminado por " + injury.getDescription());
 	                } else {
 	                    sleep(injury.getPenaltyTime());
-	                    System.out.println("Penalización de tiempo: " + injury.getPenaltyTime() + " segundos");
+	                    System.out.println("Penalización de tiempo: " + injury.getPenaltyTime()/1000.0f + " segundos");
 	                }
 	            }
 	            
@@ -251,10 +254,10 @@ public class AthleteRaceInformation extends Thread implements Serializable{
 	            if (randomAccident != null) {
 	            	sleep(randomAccident.getPenaltyTime());
 	                System.out.println("Accidente aleatorio en " + currentDiscipline.getDescription() + ": " + randomAccident.getDescription());
-	                System.out.println("Penalización de tiempo: " + randomAccident.getPenaltyTime() + " segundos");
+	                System.out.println("Penalización de tiempo: " + randomAccident.getPenaltyTime()/1000.0f + " segundos");
 	                
 	                // Restar el tiempo de penalización al avance total del atleta
-	            }				
+	            }			
 				
 	            Championship.getInstance().listenAdvancePanel(this);
 				

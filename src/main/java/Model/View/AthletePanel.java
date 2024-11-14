@@ -60,7 +60,7 @@ public class AthletePanel extends JPanel{
 		lblDistance = new JLabel("");
 		lblDistance.setHorizontalAlignment(SwingConstants.LEFT);
 		lblDistance.setBounds(56, 21, 32, 32);
-		lblDistance.setIcon(new ImageIcon("img\\nadando.png"));
+		ViewUtils.setIconToLabel(lblDistance, "/resources/img/nadando.png", 32, 32);
 		add(lblDistance);
 		
 	}
@@ -119,7 +119,7 @@ public class AthletePanel extends JPanel{
 		if (advancedDistance < modality.getTotalDistance())
 			this.lblDistance.setLocation(lblDimensionDistance, 21);
 		else {
-			this.lblDistance.setIcon(new ImageIcon("img\\bandera-de-meta.png"));
+			ViewUtils.setIconToLabel(lblDistance, "/resources/img/bandera-de-meta.png", 32, 32);
 			this.lblDistance.setLocation(this.getWidth() - 32, 21);
 		}
 
@@ -129,10 +129,10 @@ public class AthletePanel extends JPanel{
 		String actual = "nadando"; //Swimming Icono(Iniciada en constructor)
 		//Cuando pasa una transicion y solo la primer vez que lo hace cambia el Icono
 		if (((transitionLine1 < lblDimensionDistance) && (lblDimensionDistance < transitionLine2)) && actual != "ciclismo") {
-			this.lblDistance.setIcon(new ImageIcon("img\\ciclismo.png"));
+			ViewUtils.setIconToLabel(lblDistance, "/resources/img/ciclismo.png", 32, 32);
 			actual = "ciclismo";
 		} else if ((lblDimensionDistance > transitionLine2) && (actual != "capacitacion")) {
-			this.lblDistance.setIcon(new ImageIcon("img\\capacitacion.png"));
+			ViewUtils.setIconToLabel(lblDistance, "/resources/img/capacitacion.png", 32, 32);
 			actual = "capacitacion";
 		}
 	}
@@ -141,7 +141,7 @@ public class AthletePanel extends JPanel{
 		this.setBounds(281, 73 + 70 * position, 1056, 70);
 		if (position <= 8) {
 			if (isOut.equals(true))
-				this.lblDistance.setIcon(new ImageIcon("img\\cerrar.png"));
+				ViewUtils.setIconToLabel(lblDistance, "/resources/img/cerrar.png", 32, 32);
 			this.setVisible(true);
 			this.repaint();
 		} else {

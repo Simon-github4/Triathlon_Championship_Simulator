@@ -13,7 +13,7 @@ public class Persistence {
 		
 	    public static void championshipPersistence(Championship championship) {
 	        try {
-	            FileOutputStream fos = new FileOutputStream("championship.file");
+	            FileOutputStream fos = new FileOutputStream("championship2.file");
 	            ObjectOutputStream oos = new ObjectOutputStream(fos);
 	            oos.writeObject(championship);
 	            oos.flush();
@@ -28,7 +28,7 @@ public class Persistence {
 	    public static Championship ChampionshipDeserialization() {
 	        Championship championship = null;
 	        try {
-	            FileInputStream fis = new FileInputStream("championship.file");
+	            FileInputStream fis = new FileInputStream("championship2.file");
 	            ObjectInputStream ois = new ObjectInputStream(fis);
 	            championship = (Championship) ois.readObject();
 	            ois.close();

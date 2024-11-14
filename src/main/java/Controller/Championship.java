@@ -129,8 +129,13 @@ public class Championship implements Serializable, NewRaceListener, RefreshViewL
 			listenRefreshChampionshipPositions();
 			races.remove(currentRace);
 			currentRaceView.finishRace();
-		} else //Si se ha abandona la carrera sin terminar, los datos no se guardan y se cancela la carrera
-			currentRace.cancelRace(); 
+		} 
+	}
+	
+	public void listenExitRace() {
+	//Si se ha abandona la carrera sin terminar, los datos no se guardan y se cancela la carrera
+		if (!currentRace.isFinished()) 
+			currentRace.cancelRace(); 		
 	}
 	
 	private void listenFinishChampionship() {
@@ -187,15 +192,14 @@ public class Championship implements Serializable, NewRaceListener, RefreshViewL
 			});
 			//Actualizar atributo Position de cada atleta basado en el ordenamiento por distancia avanzada
 			for (int i = 0; i < currentRace.getListAthletes().size(); i++) {								 
-				currentRace.getListAthletes().get(i).setPosition(i+1);	
-				currentRace.getListAthletes().get(i).getAthlete().getChampionshipInformation().getLast().setPosition(i+1);
-			}	
-			
-			//Actualiza segun las posiciones de los atletas sus respectivos paneles y ubica los primeros 8 visibles 	 
-			for (AthleteRaceInformation athleteRace : panels.keySet()) {		 
+				AthleteRaceInformation athleteRace = currentRace.getListAthletes().get(i);
+				athleteRace.setPosition(i+1);	
+				athleteRace.getAthlete().getChampionshipInformation().getLast().setPosition(i+1);
+				
+			//Actualiza segun las posiciones de los atletas sus respectivos paneles y ubica los primeros 8 visibles 	 	
 				AthletePanel panel = panels.get(athleteRace);	    
 				panel.refreshPositions(athleteRace.getPosition(), athleteRace.isOut());
-			}	
+			}
 			
 		} catch(IllegalArgumentException ex) {
 			currentRaceView.problemPause(); 
@@ -228,6 +232,13 @@ public class Championship implements Serializable, NewRaceListener, RefreshViewL
 		}
 	}
 
+	@Override
+	public int listenChangeVelocity(AthleteRaceInformation athlete) {
+	//segun el atleta, obtiene su panel y su velocidad actual
+		AthletePanel panel = panels.get(athlete);		
+		return (int) panel.getSpinnerSpeed().getValue();
+	}
+
 	// Getters and Setters
 	public static Championship getInstance() {
 		if (currentInstance == null) {
@@ -236,11 +247,4 @@ public class Championship implements Serializable, NewRaceListener, RefreshViewL
 		return currentInstance;
 	}
 
-	@Override
-	public int listenChangeVelocity(AthleteRaceInformation athlete) {
-	//segun el atleta, obtiene su panel y su velocidad actual
-		AthletePanel panel = panels.get(athlete);		
-		return (int) panel.getSpinnerSpeed().getValue();
-	}
-	
 }

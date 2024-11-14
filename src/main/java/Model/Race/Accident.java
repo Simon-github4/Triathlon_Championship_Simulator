@@ -71,7 +71,7 @@ public class Accident {
 		        	
 		        	String[] minorInjuries = {
 		                    "Calambres en las piernas",
-		                    "Fatiga muscular"
+		                    "Fatiga muscular",
 		                };
 		                String[] severeInjuries = {
 		                    "Torcedura de tobillo",
@@ -80,20 +80,20 @@ public class Accident {
 		                
 		             boolean isSevereInjury = random.nextFloat(500) < injuryProbability;
 		             String injuryDescription;
-		             long sleepTime = 0;
+		             long penaltyTime = 0;
 		             int numberRaceOut = 0;
 		             boolean causesInjury = true;
 		            
 		             if (isSevereInjury) {
 		                 injuryDescription = severeInjuries[random.nextInt(severeInjuries.length)];
-		                 sleepTime = -1;
+		                 penaltyTime = -1;
 		                 numberRaceOut = random.nextInt(2) + 1;
 		             } else {
 		                 injuryDescription = minorInjuries[random.nextInt(minorInjuries.length)];
-		                 sleepTime = random.nextLong(500) + 1001;
+		                 penaltyTime = random.nextLong(500) + 1001;
 		             }
 		             
-		             return new Accident(injuryDescription, causesInjury, sleepTime, numberRaceOut);
+		             return new Accident(injuryDescription, causesInjury, penaltyTime, numberRaceOut);
 		        }
 		        return null;
 		    }

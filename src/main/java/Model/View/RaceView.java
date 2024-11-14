@@ -70,29 +70,29 @@ public class RaceView extends JFrame {
 		panel_1.add(lblRaceTime);
 		lblRaceTime.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblRaceTime.setHorizontalAlignment(SwingConstants.LEFT);
-		lblRaceTime.setIcon(new ImageIcon("img\\gestion-del-tiempo.png"));
+		ViewUtils.setIconToLabel(lblRaceTime, "/resources/img/gestion-del-tiempo.png", 32, 32);
 		
 		lblClimateCondition = new JLabel("Climate condition:");
 		lblClimateCondition.setBounds(6, 15, 322, 39);
 		panel_1.add(lblClimateCondition);
-		lblClimateCondition.setIcon(new ImageIcon("img\\nublado.png"));
 		lblClimateCondition.setHorizontalAlignment(SwingConstants.LEFT);
 		lblClimateCondition.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		ViewUtils.setIconToLabel(lblClimateCondition, "/resources/img/nublado.png", 32, 32);
 		
 		JLabel lblNewLabel_2 = new JLabel("SWIMMING");
-		lblNewLabel_2.setIcon(new ImageIcon("img\\nadando.png"));
+		ViewUtils.setIconToLabel(lblNewLabel_2, "/resources/img/nadando.png", 32, 32);
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel_2.setBounds(431, 111, 118, 29);
 		contentPane.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_2_1 = new JLabel("CYCLISM");
-		lblNewLabel_2_1.setIcon(new ImageIcon("img\\ciclismo.png"));
+		ViewUtils.setIconToLabel(lblNewLabel_2_1, "/resources/img/ciclismo.png", 32, 32);
 		lblNewLabel_2_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel_2_1.setBounds(782, 111, 118, 29);
 		contentPane.add(lblNewLabel_2_1);
 		
 		JLabel lblNewLabel_2_2 = new JLabel("PEDESTRISM");
-		lblNewLabel_2_2.setIcon(new ImageIcon("img\\capacitacion.png"));
+		ViewUtils.setIconToLabel(lblNewLabel_2_2, "/resources/img/capacitacion.png", 32, 32);
 		lblNewLabel_2_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel_2_2.setBounds(1100, 106, 138, 39);
 		contentPane.add(lblNewLabel_2_2);
@@ -110,7 +110,7 @@ public class RaceView extends JFrame {
 			
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				Championship.getInstance().listenFinishRace();
+				Championship.getInstance().listenExitRace();
 			}
 		});
 		contentPane.add(btnExitRace);
@@ -126,7 +126,7 @@ public class RaceView extends JFrame {
 		});
 		contentPane.add(btnStartRace);
 		
-		JButton btnNewButton = new JButton("Championship \r\nStatistics");
+		JButton btnNewButton = new JButton("Championship Statistics");
 		btnNewButton.setBounds(41, 368, 187, 62);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

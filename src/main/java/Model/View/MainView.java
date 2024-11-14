@@ -42,13 +42,12 @@ public class MainView extends JFrame {
 	private Championship controller;
 	 
 	public MainView() {
-		//this.controller = controllerr;
-		setIconImage(Toolkit.getDefaultToolkit().getImage("img\\Triatlon background.png"));
+		setBounds(100, 100, 900, 600);
+		setIconImage(ViewUtils.getIcon("/resources/img/Triatlon background.png", 100, 100).getImage());
 		setTitle("Triathlon Championship");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 900, 600);
 		
-		contentPane = new BackgroundMainView();
+		contentPane = new BackgroundMainView(getWidth(), getHeight());
 		contentPane.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		setContentPane(contentPane);
 		
@@ -58,6 +57,7 @@ public class MainView extends JFrame {
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblNewLabel.setFont(new Font("Montserrat Black", Font.BOLD, 50));	
+		contentPane.add(lblNewLabel);
 				
 		JButton btnClose = new JButton("Exit");
 		btnClose.setBounds(338, 419, 167, 86);
@@ -68,14 +68,13 @@ public class MainView extends JFrame {
 			}
 		});
 		btnClose.setFont(new Font("Montserrat Medium", Font.PLAIN, 20));
-		
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setBounds(810, 475, 76, 78);
-		lblNewLabel_1.setIcon(new ImageIcon("img\\triatlon.png"));
-		contentPane.setLayout(null);
 		contentPane.add(btnClose);
-		contentPane.add(lblNewLabel_1);
-		contentPane.add(lblNewLabel);
+		
+		JLabel iconRightDown = new JLabel("");
+		iconRightDown.setBounds(810, 475, 76, 78);
+		ViewUtils.setIconToLabel(iconRightDown, "/resources/img/triatlon.png", 64, 64);
+		contentPane.setLayout(null);
+		contentPane.add(iconRightDown);
 		
 		JButton btnNewButton = new JButton("Start new championship");
 		btnNewButton.setBounds(448, 322, 350, 83);
