@@ -15,4 +15,5 @@ public interface RefreshViewListener {
 	
 	void listenShowCurrentRanking();
 
+	void listenShowAccident(String message);
 }

@@ -60,10 +60,10 @@ public class Accident {
 			this.numberRaceOut = numberRaceOut;
 		}
 
-		public static Accident generateInjury(AthleteRaceInformation athlete, float fatigue) {
+		public static Accident generateInjury(AthleteRaceInformation athlete) {
 		        Random random = new Random();
 		        
-		        float injuryProbability = 0.01f * fatigue; 
+		        float injuryProbability = 0.01f * athlete.getFatigue(); 
 		        
 		        
 		        
@@ -101,9 +101,9 @@ public class Accident {
 		 public static Accident generateRandomAccident(Discipline discipline) {
 		        Random random = new Random();	        
 		  
-		        float accidentProbability = 0.002f;  
+		        float accidentProbability = 0.02f;  
 		        
-		        if (random.nextFloat(4000) < accidentProbability) {
+		        if (random.nextFloat(500) < accidentProbability) {
 		            String accidentDescription = null;
 		            long sleepTime = 2000;  // Tiempo de penalización fijo (10 segundos)
 		            

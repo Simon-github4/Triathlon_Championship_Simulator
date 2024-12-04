@@ -22,7 +22,7 @@ public class UnitMeasure implements Serializable{
 
 	@Override
 	public String toString() {
-		return "UnitMeasure [description=" + description + "]";
+		return  description;
 	}
 
 

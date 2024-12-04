@@ -11,19 +11,19 @@ public class ClimateCondition implements Serializable{
 	private int wearId;
 	private String description;
 	private UnitMeasure unitmeasure;
-	private double lowerMarck;
+	private double lowerMark;
 	private double upperMark;
 	private double swimmingWear;
 	private double cyclingWear;
 	private double runningWear;
 
 	
-	public ClimateCondition(int wearId, String description, UnitMeasure unitmeasure, double lowerMarck,
+	public ClimateCondition(int wearId, String description, UnitMeasure unitmeasure, double lowerMark,
 			double upperMark, double swimmingWear, double cyclingWear, double runningWear) {
 		this.wearId = wearId;
 		this.description = description;
 		this.unitmeasure = unitmeasure;
-		this.lowerMarck = lowerMarck;
+		this.lowerMark = lowerMark;
 		this.upperMark = upperMark;
 		this.swimmingWear = swimmingWear;
 		this.cyclingWear = cyclingWear;
@@ -47,7 +47,7 @@ public class ClimateCondition implements Serializable{
 
 
 	public double getLowerMarck() {
-		return lowerMarck;
+		return lowerMark;
 	}
 
 
@@ -74,7 +74,7 @@ public class ClimateCondition implements Serializable{
 	@Override
 	public String toString() {
 		return "ClimateCondition [wearId=" + wearId + ", description=" + description + ", unitmeasure=" + unitmeasure
-				+ ", lowerMarck=" + lowerMarck + ", upperMark=" + upperMark + ", swimmingWear=" + swimmingWear
+				+ ", lowerMarck=" + lowerMark + ", upperMark=" + upperMark + ", swimmingWear=" + swimmingWear
 				+ ", cyclingWear=" + cyclingWear + ", runningWear=" + runningWear + "]";
 	}
 	

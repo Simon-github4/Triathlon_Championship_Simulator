@@ -31,7 +31,14 @@ import javax.swing.border.TitledBorder;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.EtchedBorder;
+import javax.swing.event.ChangeListener;
+
+import com.formdev.flatlaf.FlatLightLaf;
+
+import javax.swing.event.ChangeEvent;
 
 public class RaceView extends JFrame {
 
@@ -40,12 +47,12 @@ public class RaceView extends JFrame {
 	private JLabel lblClimateCondition;
 	private JLabel lblRaceTime;
 	private JLabel lblTitulo;
-	//private Ranking ranking;
 	private final ButtonGroup buttonGroupPause = new ButtonGroup();
 	private JRadioButton rdbtnPause;
 	private JRadioButton rdbtnResume;
 	private JButton btnNextRace;
 	private JButton btnSerialize;
+	private JLabel lblMessage;
 	
 	public RaceView(String titleRace) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -104,8 +111,7 @@ public class RaceView extends JFrame {
 		contentPane.add(lblTitulo);	
 		
 		JButton btnExitRace = new JButton("Exit");
-		//btnExitRace.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnExitRace.setBounds(41, 273, 187, 57);
+		btnExitRace.setBounds(41, 601, 190, 55);
 		btnExitRace.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
@@ -116,7 +122,7 @@ public class RaceView extends JFrame {
 		contentPane.add(btnExitRace);
 		
 		JButton btnStartRace = new JButton("Start");
-		btnStartRace.setBounds(41, 456, 187, 57);
+		btnStartRace.setBounds(41, 276, 190, 55);
 		btnStartRace.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					Championship.getInstance().listenStartRace();
@@ -127,7 +133,7 @@ public class RaceView extends JFrame {
 		contentPane.add(btnStartRace);
 		
 		JButton btnNewButton = new JButton("Championship Statistics");
-		btnNewButton.setBounds(41, 368, 187, 62);
+		btnNewButton.setBounds(41, 341, 190, 55);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Championship.getInstance().listenShowCurrentRanking();
@@ -138,12 +144,12 @@ public class RaceView extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(64, 64, 64), Color.BLACK, new Color(192, 192, 192), null));
-		panel.setBounds(41, 160, 199, 85);
+		panel.setBounds(41, 160, 190, 85);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		rdbtnPause = new JRadioButton("Pause Race");
-		rdbtnPause.setBounds(6, 15, 187, 21);
+		rdbtnPause.setBounds(6, 15, 178, 21);
 		panel.add(rdbtnPause);
 		rdbtnPause.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -154,7 +160,7 @@ public class RaceView extends JFrame {
 		buttonGroupPause.add(rdbtnPause);
 		
 		rdbtnResume = new JRadioButton("Resume Race");
-		rdbtnResume.setBounds(6, 52, 187, 21);
+		rdbtnResume.setBounds(6, 52, 178, 21);
 		panel.add(rdbtnResume);
 		rdbtnResume.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -170,11 +176,11 @@ public class RaceView extends JFrame {
 				Championship.getInstance().listenStartNewRace();
 			}
 		});
-		btnNextRace.setBounds(41, 544, 187, 57);
+		btnNextRace.setBounds(41, 406, 190, 55);
 		btnNextRace.setEnabled(false);
 		contentPane.add(btnNextRace);
 		
-		btnSerialize = new JButton("Serialize Race");
+		btnSerialize = new JButton("Exit and Save");
 		btnSerialize.setEnabled(false);
 		btnSerialize.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -183,12 +189,64 @@ public class RaceView extends JFrame {
 			}
 		});
 		
-		btnSerialize.setBounds(41, 626, 187, 62);
+		btnSerialize.setBounds(41, 471, 190, 55);
 		contentPane.add(btnSerialize);
+		
+		JButton btnNewButton_1 = new JButton("Update Weather conditions");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				UpdateWeatherView crudView = new UpdateWeatherView();
+				crudView.setVisible(true);
+				crudView.setLocationRelativeTo(null);
+			}
+		});
+		btnNewButton_1.setBounds(41, 536, 190, 55);
+		contentPane.add(btnNewButton_1);
+		
+		lblMessage = new JLabel("");
+		lblMessage.setFont(new Font("SansSerif", Font.PLAIN, 16));
+		lblMessage.setForeground(Color.RED);
+		lblMessage.setBounds(287, 712, 852, 44);
+		contentPane.add(lblMessage);
+		
+		JToggleButton tglbtnNewToggleButton = new JToggleButton("Dark");
+		tglbtnNewToggleButton.setSelected(false);
+		tglbtnNewToggleButton.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				if(tglbtnNewToggleButton.isSelected()) {
+					tglbtnNewToggleButton.setText("Light");
+					//FlatLightLaf.setup(new com.formdev.flatlaf.FlatDarculaLaf());
+					for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) 
+				        if ("Nimbus".equals(info.getName())) {
+				            try {
+								UIManager.setLookAndFeel(info.getClassName());
+							} catch (ClassNotFoundException e4) {
+								// TODO Auto-generated catch block
+								e4.printStackTrace();
+							} catch (InstantiationException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							} catch (IllegalAccessException e2) {
+								// TODO Auto-generated catch block
+								e2.printStackTrace();
+							} catch (UnsupportedLookAndFeelException e3) {
+								// TODO Auto-generated catch block
+								e3.printStackTrace();
+							}
+				            break;
+				        }
+				}else {
+					tglbtnNewToggleButton.setText("Dark");
+					FlatLightLaf.setup(new com.formdev.flatlaf.FlatLightLaf());	
+				}
+			}
+		});
+		tglbtnNewToggleButton.setBounds(41, 676, 190, 55);
+		contentPane.add(tglbtnNewToggleButton);
 	}
 	 
 	//Methods    
-	
+
 	public void refreshInfo(float time, ClimateCondition currentWeather) {
 		this.lblRaceTime.setText("Race Time: " + Float.valueOf(time).shortValue() + " seconds");
 		this.lblClimateCondition.setText("Climate condition:" + currentWeather.getDescription());
@@ -202,7 +260,7 @@ public class RaceView extends JFrame {
 	}
 	
 	public void problemPause() {
-		rdbtnPause.doClick();
+		pause();
 		JOptionPane.showMessageDialog(null, "There was a small problem updating the positions, press 'OK' to continue the race.");
 	}
 	
@@ -225,6 +283,10 @@ public class RaceView extends JFrame {
 		return lblClimateCondition;
 	}
 
+	public JLabel getLblMessage() {
+		return lblMessage;
+	}
+	
 	public JButton getBtnNextRace() {
 		return btnNextRace;
 	}
@@ -248,7 +310,4 @@ public class RaceView extends JFrame {
 	public void setLblTitulo(JLabel lblTitulo) {
 		this.lblTitulo = lblTitulo;
 	}
-
-
-  
 }

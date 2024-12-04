@@ -87,6 +87,10 @@ public class Championship implements Serializable, NewRaceListener, RefreshViewL
 	 
 	// Event Listeners
 
+	public void listenShowAccident(String message){
+		currentRaceView.getLblMessage().setText(message);
+	}
+	
 	@Override
 	public void listenAdvancePanel(AthleteRaceInformation athleteRace) {
 	//Se ejecuta cada actualizacion de distancia de athleteRace

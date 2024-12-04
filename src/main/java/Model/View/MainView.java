@@ -15,11 +15,14 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.BorderLayout;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.UIManager.LookAndFeelInfo;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.BevelBorder;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
@@ -28,12 +31,15 @@ import java.awt.Toolkit;
 import java.awt.Color;
 import javax.swing.border.TitledBorder;
 
+import com.formdev.flatlaf.FlatLightLaf;
+
 import Controller.Championship;
 import Model.Race.Race;
 import Model.View.BackgroundMainView;
 import Persistence.Persistence;
 
 import javax.swing.border.EtchedBorder;
+import java.awt.SystemColor;
 
 public class MainView extends JFrame {
 
@@ -51,6 +57,28 @@ public class MainView extends JFrame {
 		contentPane.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		setContentPane(contentPane);
 		
+		FlatLightLaf.setup(new FlatLightLaf());	
+		/*for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) 
+	        if ("Nimbus".equals(info.getName())) {
+	            try {
+					UIManager.setLookAndFeel(info.getClassName());
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InstantiationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (UnsupportedLookAndFeelException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	            break;
+	        }
+		*/
+		contentPane.setLayout(null);
 		JLabel lblNewLabel = new JLabel("TRIATHLON CHAMPIONSHIP");
 		lblNewLabel.setBounds(29, 71, 832, 64);
 		lblNewLabel.setForeground(new Color(255, 255, 255));
@@ -60,7 +88,7 @@ public class MainView extends JFrame {
 		contentPane.add(lblNewLabel);
 				
 		JButton btnClose = new JButton("Exit");
-		btnClose.setBounds(338, 419, 167, 86);
+		btnClose.setBounds(359, 419, 167, 86);
 		btnClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(ABORT);
@@ -73,11 +101,10 @@ public class MainView extends JFrame {
 		JLabel iconRightDown = new JLabel("");
 		iconRightDown.setBounds(810, 475, 76, 78);
 		ViewUtils.setIconToLabel(iconRightDown, "/resources/img/triatlon.png", 64, 64);
-		contentPane.setLayout(null);
 		contentPane.add(iconRightDown);
 		
 		JButton btnNewButton = new JButton("Start new championship");
-		btnNewButton.setBounds(448, 322, 350, 83);
+		btnNewButton.setBounds(474, 322, 350, 83);
 		btnNewButton.setFont(new Font("Montserrat Medium", Font.PLAIN, 20));
 		btnNewButton.setHorizontalAlignment(SwingConstants.LEFT);
 		btnNewButton.addActionListener(new ActionListener() {
@@ -89,8 +116,9 @@ public class MainView extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JButton btnContinuechampionship = new JButton("Continue saved championship");
+		btnContinuechampionship.setBackground(new Color(255, 255, 255));
+		btnContinuechampionship.setBounds(62, 322, 350, 83);
 		btnContinuechampionship.setHorizontalAlignment(SwingConstants.LEFT);
-		btnContinuechampionship.setBounds(29, 322, 350, 83);
 		contentPane.add(btnContinuechampionship);
 		btnContinuechampionship.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

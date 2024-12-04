@@ -53,8 +53,8 @@ public class Race extends Thread implements Serializable{
 		this.city = city;
 		this.provisioningCycling = cycling;
 		this.provisioningPedestrianism = pedestrianism;
-		List<ClimateCondition> weatherConditions = WeatherConditionsDAO.getAllWeatherConditions();
-	    this.currentWeather = ClimateCondition.getRandomWeatherCondition(weatherConditions);  // Obtener clima aleatorio
+		//List<ClimateCondition> weatherConditions = WeatherConditionsDAO.getAllWeatherConditions();
+	    //this.currentWeather = ClimateCondition.getRandomWeatherCondition(weatherConditions);  // Obtener clima aleatorio
 	    this.stopped = false;
 	 }
 	
@@ -74,8 +74,7 @@ public class Race extends Thread implements Serializable{
 			} else {
 				athlete.decreasesRaceOut();
 				athletesNotRun.add(athlete);
-			}
-			
+			}	
 		}
 	}
 	
@@ -87,6 +86,9 @@ public class Race extends Thread implements Serializable{
 			finishedAthletesCount = 0;
 			time = 0;
 			
+			List<ClimateCondition> weatherConditions = WeatherConditionsDAO.getAllWeatherConditions();
+		    this.currentWeather = ClimateCondition.getRandomWeatherCondition(weatherConditions);  
+		   
 			for (AthleteRaceInformation athlete: listAthletes)
 				athlete.start();
 						
@@ -94,8 +96,8 @@ public class Race extends Thread implements Serializable{
 			
 				try {
 					Random random = new Random();
-					if (random.nextInt(600) == 1) {
-						List<ClimateCondition> weatherConditions = WeatherConditionsDAO.getAllWeatherConditions();
+					if (random.nextInt(500) == 1) {
+						weatherConditions = WeatherConditionsDAO.getAllWeatherConditions();
 						currentWeather = ClimateCondition.getRandomWeatherCondition(weatherConditions);
 					}
 				} catch (SQLException e) {
@@ -132,7 +134,7 @@ public class Race extends Thread implements Serializable{
 			
 			Championship.getInstance().listenFinishRace();
 			
-		} catch (InterruptedException e) {
+		} catch (InterruptedException | SQLException e) {
 			e.getStackTrace();
 		}		
 	}
