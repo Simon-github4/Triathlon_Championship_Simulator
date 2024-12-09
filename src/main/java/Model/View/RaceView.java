@@ -209,40 +209,7 @@ public class RaceView extends JFrame {
 		lblMessage.setBounds(287, 712, 852, 44);
 		contentPane.add(lblMessage);
 		
-		JToggleButton tglbtnNewToggleButton = new JToggleButton("Dark");
-		tglbtnNewToggleButton.setSelected(false);
-		tglbtnNewToggleButton.addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent e) {
-				if(tglbtnNewToggleButton.isSelected()) {
-					tglbtnNewToggleButton.setText("Light");
-					//FlatLightLaf.setup(new com.formdev.flatlaf.FlatDarculaLaf());
-					for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) 
-				        if ("Nimbus".equals(info.getName())) {
-				            try {
-								UIManager.setLookAndFeel(info.getClassName());
-							} catch (ClassNotFoundException e4) {
-								// TODO Auto-generated catch block
-								e4.printStackTrace();
-							} catch (InstantiationException e1) {
-								// TODO Auto-generated catch block
-								e1.printStackTrace();
-							} catch (IllegalAccessException e2) {
-								// TODO Auto-generated catch block
-								e2.printStackTrace();
-							} catch (UnsupportedLookAndFeelException e3) {
-								// TODO Auto-generated catch block
-								e3.printStackTrace();
-							}
-				            break;
-				        }
-				}else {
-					tglbtnNewToggleButton.setText("Dark");
-					FlatLightLaf.setup(new com.formdev.flatlaf.FlatLightLaf());	
-				}
-			}
-		});
-		tglbtnNewToggleButton.setBounds(41, 676, 190, 55);
-		contentPane.add(tglbtnNewToggleButton);
+		
 	}
 	 
 	//Methods    
